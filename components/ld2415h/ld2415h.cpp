@@ -25,17 +25,26 @@ void LD2415HComponent::setup() {
   this->update_config_ = true;
 
 #ifdef USE_NUMBER
-  this->min_speed_threshold_number_->publish_state(this->min_speed_threshold_);
-  this->compensation_angle_number_->publish_state(this->compensation_angle_);
-  this->sensitivity_number_->publish_state(this->sensitivity_);
-  this->vibration_correction_number_->publish_state(this->vibration_correction_);
-  this->relay_trigger_duration_number_->publish_state(this->relay_trigger_duration_);
-  this->relay_trigger_speed_number_->publish_state(this->relay_trigger_speed_);
-  this->timeout_duration_number_->publish_state(this->timeout_duration_);
+  if (this->min_speed_threshold_number_ != nullptr)
+    this->min_speed_threshold_number_->publish_state(this->min_speed_threshold_);
+  if (this->compensation_angle_number_ != nullptr)
+    this->compensation_angle_number_->publish_state(this->compensation_angle_);
+  if (this->sensitivity_number_ != nullptr)
+    this->sensitivity_number_->publish_state(this->sensitivity_);
+  if (this->vibration_correction_number_ != nullptr)
+    this->vibration_correction_number_->publish_state(this->vibration_correction_);
+  if (this->relay_trigger_duration_number_ != nullptr)
+    this->relay_trigger_duration_number_->publish_state(this->relay_trigger_duration_);
+  if (this->relay_trigger_speed_number_ != nullptr)
+    this->relay_trigger_speed_number_->publish_state(this->relay_trigger_speed_);
+  if (this->timeout_duration_number_ != nullptr)
+    this->timeout_duration_number_->publish_state(this->timeout_duration_);
 #endif
 #ifdef USE_SELECT
-  this->sample_rate_selector_->publish_state(this->i_to_s_(SAMPLE_RATE_STR_TO_INT, this->sample_rate_));
-  this->tracking_mode_selector_->publish_state(this->i_to_s_(TRACKING_MODE_STR_TO_INT, this->tracking_mode_));
+  if (this->sample_rate_selector_ != nullptr)
+    this->sample_rate_selector_->publish_state(this->i_to_s_(SAMPLE_RATE_STR_TO_INT, this->sample_rate_));
+  if (this->tracking_mode_selector_ != nullptr)
+    this->tracking_mode_selector_->publish_state(this->i_to_s_(TRACKING_MODE_STR_TO_INT, this->tracking_mode_));
 #endif
 }
 
